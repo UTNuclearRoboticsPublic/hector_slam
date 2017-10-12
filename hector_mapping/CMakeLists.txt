@@ -105,6 +105,10 @@ target_link_libraries(hector_mapping
   ${Boost_LIBRARIES}
 )
 
+# Ensure it's built in release mode
+# See answers.ros.org/question/151466
+set_target_properties(hector_mapping PROPERTIES DCMAKE_BUILD_TYPE "Release")
+
 #############
 ## Install ##
 #############
