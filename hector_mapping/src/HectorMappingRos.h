@@ -73,7 +73,7 @@ public:
 
 
   void scanCallback(const sensor_msgs::LaserScan& scan);
-  void sysMsgCallback(const std_msgs::String& string);
+  void reloadMapCallback(const std_msgs::String& string);
 
   bool mapCallback(nav_msgs::GetMap::Request  &req, nav_msgs::GetMap::Response &res);
 
@@ -101,9 +101,9 @@ protected:
   ros::NodeHandle node_;
 
   ros::Subscriber scanSubscriber_;
-  ros::Subscriber sysMsgSubscriber_;
-
+  ros::Subscriber reloadMapSubscriber_;
   ros::Subscriber mapSubscriber_;
+
   message_filters::Subscriber<geometry_msgs::PoseWithCovarianceStamped>* initial_pose_sub_;
   tf::MessageFilter<geometry_msgs::PoseWithCovarianceStamped>* initial_pose_filter_;
 
@@ -152,7 +152,7 @@ protected:
   std::string p_tf_map_scanmatch_transform_frame_name_;
 
   std::string p_scan_topic_;
-  std::string p_sys_msg_topic_;
+  std::string p_reload_map_topic_;
 
   std::string p_pose_update_topic_;
   std::string p_twist_update_topic_;
@@ -182,7 +182,7 @@ protected:
   bool p_map_with_known_poses_;
   bool p_timing_output_;
 
-  bool p_use_static_map_;
+  bool p_load_saved_map_;
 
   float p_sqr_laser_min_dist_;
   float p_sqr_laser_max_dist_;
